@@ -31,6 +31,13 @@ unknown...
 """
 print(starting_area)
 
+# Ask the player for their first decision
+decision = input("Do you wish to take the path (yes or no): ")
+
+print(decision)
+
+
+
 
 
 
