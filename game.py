@@ -1,4 +1,5 @@
 '''
+DOC STRING
 Adventure Game
 Author: Shambhavi Koirala
 Version: 1.0
@@ -16,6 +17,20 @@ print("Your journey begins here...")
 player_name = input("What is your name, adventurer?")
 
 # Concatenate strings to create a personalized message
-print("Welcome, " + player_name + "! Your journery begins now. ")
+print("Welcome, " + player_name + "! Your journery begins now. ")\
+
+# USe an f-string to display the same message in a more readable way
+print(f"Welcome, {player_name}! Your journey begins now.")
+
+# Descrube the starting area
+starting_area = """
+You find yourself in a dark forest
+The sound of rustling leaves fills the air
+A faint path lies ahead, leading deeper into the
+unknown...
+"""
+print(starting_area)
+
+
 
 
