@@ -16,7 +16,7 @@ print("Your journey begins here...")
 player_name = input("What is your name, adventurer?")
 
 # Concatenate strings to create a personalized message
-print("Welcome, " + player_name + "! Your journery begins now. ")\
+print("Welcome, " + player_name + "! Your journery begins now. ")
 
 # USe an f-string to display the same message in a more readable way
 print(f"Welcome, {player_name}! Your journey begins now.")
@@ -33,13 +33,17 @@ print(starting_area)
 # Ask the player for their first decision
 decision = input("Do you wish to take the path (yes or no): ").lower()
 
+# Invalid response loop until they give a valid response
+while decision not in ["yes", "no"]:
+    print("Invalid choice. Please type 'yes' or 'no'.")
+    # option for the user to make new decision
+    decision = input("Do you wish to take the path (yes or no): ").lower()
+
 # Respond based on the player's decision
 if decision == "yes":
     print(f"Brave choice, {player_name}! You step on the path and venture forward")
 elif decision == "no":
     print(f"{player_name}, you decide to wait. Perhaps courage will find you later.")
-else:
-    print("Confused, you stand still, unsure of what to do.")
     
 
 
