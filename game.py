@@ -30,20 +30,50 @@ unknown...
 """
 print(starting_area)
 
-# Ask the player for their first decision
-decision = input("Do you wish to take the path (yes or no): ").lower()
+# Start the game Loop
+while True: 
+    print("\nYou see two path ahead:")
+    print("\t1. Take the left path into the dark woods.")
+    print("\t2. Take the right path towward the mountain pass.")
+    print("\t3. Stay where you are.")
 
-# Invalid response loop until they give a valid response
-while decision not in ["yes", "no"]:
-    print("Invalid choice. Please type 'yes' or 'no'.")
-    # option for the user to make new decision
-    decision = input("Do you wish to take the path (yes or no): ").lower()
+    decision = input("What will you do (1,2,3): ")
 
-# Respond based on the player's decision
-if decision == "yes":
-    print(f"Brave choice, {player_name}! You step on the path and venture forward")
-elif decision == "no":
-    print(f"{player_name}, you decide to wait. Perhaps courage will find you later.")
-    
+    if decision == "1":
+        print(f"{player_name}, you step into the dark woods. The trees whisphered as you walk deeper.")
+
+    elif decision == "2":
+        print(f"{player_name}, you make your way "
+              "towards the mountain pass, feeling "
+              "the cold wind against your face.")
+    elif decision == "3":
+        print("You stay still listening to the "
+              "distant sounds of the forest")
+    else:
+        print("Invalid choice. Please choose "
+              "1, 2, 3.")
+
+
+
+
+
+
+
+
+# # Ask the player for their first decision
+# decision = input("Do you wish to take the path (yes or no): ").lower()
+
+# # Invalid response loop until they give a valid response
+# while decision not in ["yes", "no"]:
+#     print("Invalid choice. Please type 'yes' or 'no'.")
+#     # option for the user to make new decision
+#     decision = input("Do you wish to take the path (yes or no): ").lower()
+
+# # Respond based on the player's decision
+# if decision == "yes":
+#     print(f"Brave choice, {player_name}! You step on the path and venture forward")
+# elif decision == "no":
+#     print(f"{player_name}, you decide to wait. Perhaps courage will find you later.")
+
 
 
