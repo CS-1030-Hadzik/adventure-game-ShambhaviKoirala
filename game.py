@@ -2,7 +2,7 @@
 DOC STRING
 Adventure Game
 Author: Shambhavi Koirala
-Version: 1.0
+Version: 2.0
 Description:
 This is a text-based adventure game where the player makes choices
 to navigate through a mysterious forest.
@@ -108,10 +108,15 @@ while True:
         player.has_map(True)
 
     elif decision == "3":
-        print(f"{player.name}, you see two paths ahead")
-        if player.has_lantern == False:
+        if player.has_lantern:
+            print(f"{player.name}, you see two paths ahead")
+            print("Inside the cave, you have hidden treasure.")
+        
+        else:
             print("Its too dark to continue without a lantern.")
+            print("Maybe you find a light source to move ahead!")
 
+    # Stay where you are
     elif decision == "4":
         print("You stay still listening to the "
               "distant sounds of the forest")
