@@ -2,7 +2,7 @@
 DOC STRING
 Adventure Game
 Author: Shambhavi Koirala
-Version: 2.0
+Version: 2.2
 Description:
 This is a text-based adventure game where the player makes choices
 to navigate through a mysterious forest.
@@ -72,6 +72,14 @@ player = welcome_player()
 describe_area()
 
 # --------------------------------------------------------------------
+# TODO: Commit with a message like:
+#       REF unlock new areas based on inventory items
+# TODO: Push your commits to GitHub
+# --------------------------------------------------------------------
+
+
+
+# --------------------------------------------------------------------
 # Main game loop
 # Run this until the player quits
 
@@ -85,12 +93,16 @@ while True:
     print("\t1. Take the left path into the dark woods.")
     print("\t2. Take the right path toward the mountain pass.")
     print("\t3. Take the straight path into the cave.")
-    print("\t4. Stay where you are.")
+    print("\t4. Explore the nearby cave.")
+    # TODO: Add a new menu option for "Explore a nearby cave"
+
+    print("\t5. Stay where you are.")
 
     print("\tType 'i' to view your inventory.")
+    # TODO update numbers
+    decision = input("What will you do (1,2,3,4,5 or i): ").lower()
 
-    decision = input("What will you do (1,2,3,4 or i): ").lower()
-
+    # open the inventory
     if decision == "i":
         print("Inventory", player.inventory)
         continue
@@ -105,25 +117,44 @@ while True:
               "towards the mountain pass, feeling "
               "the cold wind against your face.")
         add_to_inventory("map")
-        player.has_map(True)
+        player.has_map = True
 
     elif decision == "3":
         if player.has_lantern:
             print(f"{player.name}, you see two paths ahead")
             print("Inside the cave, you have hidden treasure.")
+            add_to_inventory("treasure")
+            print("You have picked up a lantern!")
+            # TODO: After picking up new items, confirm to the player they got it
+            # add to inventory
         
         else:
             print("Its too dark to continue without a lantern.")
             print("Maybe you find a light source to move ahead!")
 
+    # TODO: In the valley choice:
+#       - If player.has_map is True: allow entry and add "rare herbs" to inventory
+#       - Else: display a message that you can’t find the valley
+# TODO: After picking up new items, confirm to the player they got it
+# add to inventory
+
+    # TODO update numbers
     # Stay where you are
+
     elif decision == "4":
+        if player.has_map:
+            print("You enter a beautiful secret valley full of trees and plants.")
+            print(f"{player.name}, you have found some rare herbs.")
+            add_to_inventory("rare herbs")
+        else:
+            print("You are lost in the cave wandering in circles. Try finding a map! ")
+
+    elif decision == "5":
         print("You stay still listening to the "
               "distant sounds of the forest")
-
     else:
         print("Invalid choice. Please choose "
-              "1, 2, 3, 4.")
+              "1, 2, 3, 4, 5.")
 
     # Ask if they want to continue
     play_again = input("Do you want to continue "
