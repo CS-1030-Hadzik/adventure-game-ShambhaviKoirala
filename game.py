@@ -64,6 +64,31 @@ def add_to_inventory(item):
     print(f"You picked up a {item}!")
 
 # --------------------------------------------------------------------
+# Stay still remove health if they stay still
+# --------------------------------------------------------------------
+
+def stay_still(player):
+    print("The cold saps your energy...")
+    player.health = player.health - 10
+
+# --------------------------------------------------------------------
+# Check lose
+# If health is 0 or lower, print lose message and exit
+# --------------------------------------------------------------------
+
+def check_lose(player):
+    return player.health <= 0 # true of false
+
+# --------------------------------------------------------------------
+# Check win function
+# If "treasure" and "rare herbs" are both in inventory
+# Print win message and exit
+# --------------------------------------------------------------------
+
+def check_win(player):
+    return "treasure" in player.inventory and "rare herbs" in player.inventory
+
+# --------------------------------------------------------------------
 # explore_dark_woods
 # describe dark woods
 # add the lantern to the inventory
@@ -105,9 +130,11 @@ def explore_cave(player):
             add_to_inventory("treasure")
         else:
             print("You already collected the treasure.")
-    else:
+
+    else: # No lantern
         print("Its too dark to continue without a lantern.")
         print("Maybe you find a light source to move ahead!")
+        player.health -= 10
 
 # --------------------------------------------------------------------
 # cave area
@@ -121,8 +148,9 @@ def explore_hidden_valley(player):
             add_to_inventory("rare herbs")
         else:
             print("You already have the rare herbs")
-    else:
+    else: # No map
         print("You are lost in the cave wandering in circles. Try finding a map and look out for a valley! ")
+        player.health -= 10
 
 # --------------------------------------------------------------------
 # Game starts here
@@ -131,7 +159,6 @@ def explore_hidden_valley(player):
 
 player = welcome_player()
 describe_area()
-
 
 # Start the game Loop
 while True: 
@@ -142,6 +169,8 @@ while True:
     print("\t4. Explore the hidden valley.")
     print("\t5. Stay where you are.")
     print("\tType 'i' to view your inventory.")
+    print(f"Current Health: {player.health}")
+
     decision = input("What will you do (1,2,3,4,5 or i): ").lower()
 
     # open the inventory
@@ -162,11 +191,25 @@ while True:
        explore_hidden_valley(player)
 
     elif decision == "5":
-        print("You stay still listening to the "
-              "distant sounds of the forest")
+        print("You stay still listening to the distant sounds of the forest...")
+        stay_still(player)
+
     else:
-        print("Invalid choice. Please choose "
-              "1, 2, 3, 4, 5.")
+        print("Invalid choice. Please choose 1, 2, 3, 4, 5.")
+
+    # Check if the player has "treasure" and "rare herbs"
+    # break out of while loop
+    if check_win(player):
+        print(f"\nCongrautlation {player.name}!"
+             "You found both the treasure and the rare herbs.")
+        print("You have conquered the mysterious forest!")
+        break
+
+    # Check if the player has lost all health
+    if check_lose(player):
+        print(f"\n{player.name}, you have run out of health and collapsed from exhaustion.")
+        print("You adventure ends here...")
+        break
 
     # Ask if they want to continue
     play_again = input("Do you want to continue "
